@@ -3,15 +3,15 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-//******************Exploring JSX************** */
+//************************************************************ */
 
-var app = {
+const app = {
 	title: 'Indecision App',
 	// subtitle: 'Put your life in the hands of computer',
 	options: ['One', 'Two'],
 };
 
-var template = (
+const template = (
 	<div>
 		<h1>{app.title}</h1>
 		{app.subtitle && <p>{app.subtitle}</p>}
@@ -28,29 +28,38 @@ var template = (
 		)}
 	</div>
 );
-var user = {
-	name: 'Diwakar',
-	age: 17,
-	location: 'Brisbane',
+
+//************************************************************* */
+
+let count = 0;
+const addOne = () => {
+	console.log('addOne');
+};
+const minusOne = () => {
+	console.log('removeOne');
+};
+const setupReset = () => {
+	console.log('reset');
 };
 
-const getLocation = (props) => {
-	if (props) {
-		return <p>Location: {props}</p>;
-	}
-};
-
-var templateTwo = (
+const templateTwo = (
 	<div>
-		<h1>{user.name ? user.name : 'Anonymous'}</h1>
-		{user.age && user.age >= 18 && <p>Age: {user.age}</p>}
-		{getLocation(user.location)}
+		<h1>Count: {count}</h1>
+		<button onClick={addOne} className='class'>
+			+1
+		</button>
+		<button onClick={minusOne} className='class'>
+			-1
+		</button>
+		<button onClick={setupReset} className='class'>
+			reset
+		</button>
 	</div>
 );
 
-var appRoot = document.getElementById('root');
+const appRoot = document.getElementById('root');
 
-ReactDOM.render(template, appRoot);
+ReactDOM.render(templateTwo, appRoot);
 
 //********************************************** */
 
