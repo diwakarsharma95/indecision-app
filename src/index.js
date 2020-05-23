@@ -7,30 +7,44 @@ import * as serviceWorker from './serviceWorker';
 
 var app = {
 	title: 'Indecision App',
-	subtitle: 'Put your life in the hands of computer',
+	// subtitle: 'Put your life in the hands of computer',
+	options: ['One', 'Two'],
 };
 
 var template = (
 	<div>
 		<h1>{app.title}</h1>
-		<p>{app.subtitle}</p>
-		<ol>
-			<li>Item One</li>
-			<li>Item Two</li>
-		</ol>
+		{app.subtitle && <p>{app.subtitle}</p>}
+		{app.options && app.options.length > 0 ? (
+			<div>
+				<p>Here are your options</p>
+				<ol>
+					<li>Item {app.options[0]}</li>
+					<li>Item {app.options[1]}</li>
+				</ol>
+			</div>
+		) : (
+			'No Options'
+		)}
 	</div>
 );
 var user = {
 	name: 'Diwakar',
-	age: 27,
+	age: 17,
 	location: 'Brisbane',
+};
+
+const getLocation = (props) => {
+	if (props) {
+		return <p>Location: {props}</p>;
+	}
 };
 
 var templateTwo = (
 	<div>
-		<h1>{user.name}</h1>
-		<p>Age: {user.age}</p>
-		<p>Location: {user.location}</p>
+		<h1>{user.name ? user.name : 'Anonymous'}</h1>
+		{user.age && user.age >= 18 && <p>Age: {user.age}</p>}
+		{getLocation(user.location)}
 	</div>
 );
 
