@@ -5,28 +5,38 @@ import * as serviceWorker from './serviceWorker';
 
 //******************Exploring JSX************** */
 
+var app = {
+	title: 'Indecision App',
+	subtitle: 'Put your life in the hands of computer',
+};
+
 var template = (
 	<div>
-		<h1>Indecision App</h1>
-		<p>This is some info</p>
+		<h1>{app.title}</h1>
+		<p>{app.subtitle}</p>
 		<ol>
 			<li>Item One</li>
 			<li>Item Two</li>
 		</ol>
 	</div>
 );
+var user = {
+	name: 'Diwakar',
+	age: 27,
+	location: 'Brisbane',
+};
 
 var templateTwo = (
 	<div>
-		<h1>Diwakar Sharma</h1>
-		<p>Age: 26</p>
-		<p>Location: Brisbane</p>
+		<h1>{user.name}</h1>
+		<p>Age: {user.age}</p>
+		<p>Location: {user.location}</p>
 	</div>
 );
 
 var appRoot = document.getElementById('root');
 
-ReactDOM.render(templateTwo, appRoot);
+ReactDOM.render(template, appRoot);
 
 //********************************************** */
 
