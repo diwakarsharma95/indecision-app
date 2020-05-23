@@ -7,60 +7,47 @@ import * as serviceWorker from './serviceWorker';
 
 const app = {
 	title: 'Indecision App',
-	// subtitle: 'Put your life in the hands of computer',
-	options: ['One', 'Two'],
+	subtitle: 'Put your life in the hands of computer',
+	options: [],
 };
 
-const template = (
-	<div>
-		<h1>{app.title}</h1>
-		{app.subtitle && <p>{app.subtitle}</p>}
-		{app.options && app.options.length > 0 ? (
-			<div>
-				<p>Here are your options</p>
-				<ol>
-					<li>Item {app.options[0]}</li>
-					<li>Item {app.options[1]}</li>
-				</ol>
-			</div>
-		) : (
-			'No Options'
-		)}
-	</div>
-);
-
-//************************************************************* */
-
-let count = 0;
-const addOne = () => {
-	console.log('addOne');
+const onFormSubmit = (e) => {
+	e.preventDefault();
+	const option = e.target.elements.option.value;
+	if (option) {
+		app.options.push(option);
+		e.target.elements.option.value = '';
+		render();
+	}
 };
-const minusOne = () => {
-	console.log('removeOne');
+const removeAll = () => {
+	app.options = [];
+	render();
 };
-const setupReset = () => {
-	console.log('reset');
-};
-
-const templateTwo = (
-	<div>
-		<h1>Count: {count}</h1>
-		<button onClick={addOne} className='class'>
-			+1
-		</button>
-		<button onClick={minusOne} className='class'>
-			-1
-		</button>
-		<button onClick={setupReset} className='class'>
-			reset
-		</button>
-	</div>
-);
-
 const appRoot = document.getElementById('root');
+const render = () => {
+	const template = (
+		<div>
+			<h1>{app.title}</h1>
+			{app.subtitle && <p>{app.subtitle}</p>}
+			<p>{app.options.length > 0 ? 'Here are your options' : 'No options'}</p>
+			<p>{app.options.length}</p>
+			<button onClick={removeAll}>Remove All</button>
+			<ol>
+				<li>Item one</li>
+				<li>Item two</li>
+			</ol>
+			<form onSubmit={onFormSubmit}>
+				<input type='text' name='option' />
+				<button>Add Option</button>
+			</form>
+		</div>
+	);
 
-ReactDOM.render(templateTwo, appRoot);
+	ReactDOM.render(template, appRoot);
+};
 
+render();
 //********************************************** */
 
 // ReactDOM.render(
