@@ -1,11 +1,9 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
 function App() {
 	return (
 		<div>
-			<p>This is JSX from App.js</p>
+			<h1>Indecision App</h1>
 		</div>
 	);
 }
