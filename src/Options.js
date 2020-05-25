@@ -5,8 +5,9 @@ class Options extends Component {
 	render() {
 		return (
 			<div>
-				Options component here
-				<Option></Option>
+				{this.props.options.map((option) => (
+					<Option key={option} optionText={option}></Option>
+				))}
 			</div>
 		);
 	}
