@@ -4,97 +4,39 @@ import Action from './Action';
 import Options from './Options';
 import AddOption from './AddOption';
 
-//************************************************************/
-
-// class App extends Component {
-// 	constructor(props) {
-// 		super(props);
-// 		this.handleOne = this.handleOne.bind(this);
-// 		this.handleMinusOne = this.handleMinusOne.bind(this);
-// 		this.handleReset = this.handleReset.bind(this);
-// 		this.state = {
-// 			count: 0,
-// 		};
-// 	}
-// 	handleOne() {
-// 		this.setState((prevState) => {
-// 			return {
-// 				count: prevState.count + 1,
-// 			};
-// 		});
-// 	}
-// 	handleMinusOne() {
-// 		this.setState((prevState) => {
-// 			return {
-// 				count: prevState.count - 1,
-// 			};
-// 		});
-// 	}
-// 	handleReset() {
-// 		this.setState(() => {
-// 			return {
-// 				count: 0,
-// 			};
-// 		});
-// 	}
-// 	render() {
-// 		return (
-// 			<div>
-// 				<h1>Count: {this.state.count}</h1>
-// 				<button onClick={this.handleOne}>+1</button>
-// 				<button onClick={this.handleMinusOne}>-1</button>
-// 				<button onClick={this.handleReset}>reset</button>
-// 			</div>
-// 		);
-// 	}
-// }
-
-//*************************************************************/
-class Toggle extends Component {
+class App extends Component {
 	constructor(props) {
 		super(props);
-		this.btnClicked = this.btnClicked.bind(this);
+		this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
+		this.handlePick = this.handlePick.bind(this);
 		this.state = {
-			show: 'Show details',
-			hide: 'Hide details',
-			status: true,
+			title: 'Indecision',
+			subtitle: 'Put your life in the hands of a computer.',
+			options: ['Thing one', 'Thing two', 'Thing three'],
 		};
 	}
-
-	btnClicked() {
-		this.setState((prevState) => {
+	handleDeleteOptions() {
+		this.setState(() => {
 			return {
-				status: !prevState.status,
+				options: [],
 			};
 		});
+	}
+	handlePick() {
+		const randomNum = Math.floor(Math.random() * this.state.options.length);
+		const option = this.state.options[randomNum];
+		alert(option);
 	}
 	render() {
 		return (
 			<div>
-				<h1>Visibility Toggle</h1>
-				<button onClick={this.btnClicked}>
-					{this.state.status === true ? this.state.show : this.state.hide}
-				</button>
-				{this.state.status === true ? null : <p>Hey. These are some details you can see now!</p>}
+				<Header title={this.state.title} subtitle={this.state.subtitle}></Header>
+				<Action hasOptions={this.state.options.length > 0} handlePick={this.handlePick}></Action>
+				<Options options={this.state.options} handleDeleteOptions={this.handleDeleteOptions}></Options>
+				<AddOption></AddOption>
 			</div>
 		);
 	}
 }
-export default Toggle;
-//************************************************************/
 
-// function App() {
-// 	const title = 'Indecision';
-// 	const subtitle = 'Put your life in the hands of a computer.';
-// 	const options = ['Thing one', 'Thing two', 'Thing three'];
-// 	return (
-// 		<div>
-// 			<Header title={title} subtitle={subtitle}></Header>
-// 			<Action></Action>
-// 			<Options options={options}></Options>
-// 			<AddOption></AddOption>
-// 		</div>
-// 	);
-// }
-
-// export default App;
+export default App;
