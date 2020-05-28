@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
 	<React.StrictMode>
-		<App />
+		<App options={['Option One', 'Option two']} />
 	</React.StrictMode>,
 	document.getElementById('root'),
 );

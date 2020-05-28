@@ -11,9 +11,8 @@ class App extends Component {
 		this.handlePick = this.handlePick.bind(this);
 		this.handleAddOption = this.handleAddOption.bind(this);
 		this.state = {
-			title: 'Indecision',
 			subtitle: 'Put your life in the hands of a computer.',
-			options: [],
+			options: props.options,
 		};
 	}
 	handleDeleteOptions() {
@@ -43,7 +42,7 @@ class App extends Component {
 	render() {
 		return (
 			<div>
-				<Header title={this.state.title} subtitle={this.state.subtitle}></Header>
+				<Header subtitle={this.state.subtitle}></Header>
 				<Action hasOptions={this.state.options.length > 0} handlePick={this.handlePick}></Action>
 				<Options options={this.state.options} handleDeleteOptions={this.handleDeleteOptions}></Options>
 				<AddOption handleAddOption={this.handleAddOption}></AddOption>
@@ -51,5 +50,9 @@ class App extends Component {
 		);
 	}
 }
+
+App.defaultProps = {
+	options: [],
+};
 
 export default App;
