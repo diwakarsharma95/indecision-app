@@ -12,8 +12,10 @@ class AddOption extends Component {
 		e.preventDefault();
 		const inputOption = e.target.elements.option.value.trim();
 		const error = this.props.handleAddOption(inputOption);
-		e.target.elements.option.value = '';
 		this.setState(() => ({ error }));
+		if (!error) {
+			e.target.elements.option.value = '';
+		}
 	}
 	render() {
 		return (
