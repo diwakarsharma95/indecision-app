@@ -16,6 +16,15 @@ class App extends Component {
 			options: props.options,
 		};
 	}
+	componentDidMount() {
+		console.log('Fetching Data!');
+	}
+	componentDidUpdate(prevProps, prevState) {
+		console.log('saving data');
+	}
+	componentWillUnmount() {
+		console.log('componentWillUnmount');
+	}
 	handleDeleteOptions() {
 		this.setState(() => ({ options: [] }));
 	}
